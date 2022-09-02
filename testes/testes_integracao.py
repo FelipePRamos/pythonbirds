@@ -44,7 +44,7 @@ class FaseTestes(TestCase):
 
         fase.adicionar_passaro(PassaroAmarelo())
         self.assertEqual(EM_ANDAMENTO, fase.status(),
-                         'Com Porco ativo e com pássaro para lançar, o jogo não deveria acabar')
+                         'Com Porco ativo e com pássaro para .lançar, o jogo não deveria acabar')
 
     def teste_status(self):
         fase = Fase()

@@ -28,22 +28,22 @@ class FaseTestes(TestCase):
         fase.adicionar_porco(*porcos)
         fase.adicionar_passaro(*passaros)
 
-        self.assertEqual(EM_ANDAMENTO, fase.status)
+        self.assertEqual(EM_ANDAMENTO, fase.status())
 
         # colidindo cada passaro com um porco no tempo 3
         for passaro, porco in zip(passaros, porcos):
             passaro.colidir(porco, 3)
 
-        self.assertEqual(VITORIA, fase.status)
+        self.assertEqual(VITORIA, fase.status())
 
         fase.adicionar_obstaculo(Obstaculo())
-        self.assertEqual(VITORIA, fase.status, 'Obstáculo não interfere no fim do jogo')
+        self.assertEqual(VITORIA, fase.status(), 'Obstáculo não interfere no fim do jogo')
 
         fase.adicionar_porco(Porco())
-        self.assertEqual(DERROTA, fase.status, 'Com Porco ativo e sem pássaro para lançar, o jogo deveria acabar')
+        self.assertEqual(DERROTA, fase.status(), 'Com Porco ativo e sem pássaro para lançar, o jogo deveria acabar')
 
         fase.adicionar_passaro(PassaroAmarelo())
-        self.assertEqual(EM_ANDAMENTO, fase.status,
+        self.assertEqual(EM_ANDAMENTO, fase.status(),
                          'Com Porco ativo e com pássaro para lançar, o jogo não deveria acabar')
 
     def teste_status(self):

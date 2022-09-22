@@ -32,12 +32,12 @@ class Ator():
 
     def calcular_posicao(self, tempo):
         """
-        Método que calcula a posição do ator em determinado tempo.
-        Deve-se imaginar que o tempo começa em 0 e avança de 0,01 segundos
+Método que calcula a posição do ator em determinado tempo.
+Deve-se imaginar que o tempo começa em 0 e avança de 0,01 segundos
 
-        :param tempo: o tempo do jogo
-        :return: posição x, y do ator
-        """
+:param tempo: o tempo do jogo
+:return: posição x, y do ator
+"""
         return self.x, self.y
 
     def colidir(self, outro_ator, intervalo=1):
@@ -52,9 +52,11 @@ class Ator():
         :param intervalo: Intervalo a ser considerado
         :return:
         """
-        pass
-
-
+        if self.status == ATIVO and outro_ator.status == ATIVO:
+            delta_x = abs(self.x - outro_ator.x)
+            delta_y = abs(self.y - outro_ator.y)
+            if delta_x <= intervalo and delta_y <= intervalo:
+                self.status = outro_ator.status = DESTRUIDO
 
 class Obstaculo(Ator):
     _caracter_ativo = 'O'
@@ -62,6 +64,7 @@ class Obstaculo(Ator):
 
 class Porco(Ator):
     _caracter_ativo = '@'
+    _caracter_destruido = '+'
 
 
 class DuploLancamentoExcecao(Exception):
